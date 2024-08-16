@@ -1,0 +1,42 @@
+<div class="d-flex flex-column">
+  <div>
+    <h2>Task Form</h2>
+    <form [formGroup]="taskForm" class="flex" (ngSubmit)="handleSubmit()">
+      <label for="title" class="form-label m-3"
+        >Title
+        <input
+          id="title"
+          type="text"
+          placeholder="Title"
+          formControlName="title"
+          class="form-control"
+          required
+        />
+      </label>
+      <label for="due" class="form-label m-3"
+        >Due
+        <input
+          id="due"
+          type="datetime-local"
+          placeholder="Due"
+          formControlName="due"
+          class="form-control"
+        />
+      </label>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+  <div>
+    @if(tasks.length > 0) {
+    <h2>Tasks</h2>
+
+    <ul class="list-group list-group-flush">
+      @for(task of tasks; track task.id){
+      <li class="list-group-item">
+        {{ task.title }} @if(task.due){<span> {{ task.due }} </span>}
+      </li>
+      }
+    </ul>
+    }
+  </div>
+</div>
